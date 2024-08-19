@@ -1,0 +1,19 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AppointmentList from './components/AppointmentList';
+import AddAppointment from './components/AddAppointment';
+import NavBar from './components/NavBar';
+
+function App() {
+  return (
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route path="/" exact component={AppointmentList} />
+        <Route path="/add" component={AddAppointment} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;

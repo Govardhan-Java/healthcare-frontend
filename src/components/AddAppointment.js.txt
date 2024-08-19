@@ -1,0 +1,45 @@
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addAppointment } from '../redux/actions';
+
+function AddAppointment() {
+  const [appointment, setAppointment] = useState({
+    patientId: '',
+    providerId: '',
+    appointmentTime: ''
+  });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setAppointment({ ...appointment, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addAppointment(appointment));
+  };
+
+  return (
+    <div className="container">
+      <h2>Add Appointment</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Patient ID</label>
+          <input type="text" name="patientId" className="form-control" onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label>Provider ID</label>
+          <input type="text" name="providerId" className="form-control" onChange={handleChange} />
+        </div>
+        <div className="form-group">
+          <label>Appointment Time</label>
+          <input type="datetime-local" name="appointmentTime" className="form-control" onChange={handleChange} />
+        </div>
+        <button type="submit" className="btn btn-primary">Add Appointment</button>
+      </form>
+    </div>
+  );
+}
+
+export default AddAppointment;

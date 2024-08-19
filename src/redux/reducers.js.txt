@@ -1,0 +1,16 @@
+import { FETCH_APPOINTMENTS, ADD_APPOINTMENT } from './actions';
+
+const initialState = {
+  appointments: []
+};
+
+export const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_APPOINTMENTS:
+      return { ...state, appointments: action.payload };
+    case ADD_APPOINTMENT:
+      return { ...state, appointments: [...state.appointments, action.payload] };
+    default:
+      return state;
+  }
+};

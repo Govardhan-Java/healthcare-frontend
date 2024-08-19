@@ -1,0 +1,27 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAppointments } from '../redux/actions';
+
+function AppointmentList() {
+  const dispatch = useDispatch();
+  const appointments = useSelector(state => state.appointments);
+
+  useEffect(() => {
+    dispatch(fetchAppointments());
+  }, [dispatch]);
+
+  return (
+    <div className="container">
+      <h2>Appointments</h2>
+      <ul className="list-group">
+        {appointments.map(appointment => (
+          <li key={appointment.id} className="list-group-item">
+            {appointment.patient.name} with {appointment.provider.name} on {appointment.appointmentTime}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default AppointmentList;
